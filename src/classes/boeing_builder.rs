@@ -10,9 +10,9 @@ pub struct Boeing {
 impl Boeing {
     pub fn new() -> Airplane {
         let mut boeing = Airplane {
-            name:   "Boeing 747-400".to_string(),
-            id:     "0001".to_string(), //todo change
-            state:  "Free".to_string(),
+            name:   String::from("Boeing 747-400"),
+            id:     String::from("0001"), //todo change
+            state:  String::from("Free"),
             seats: HashMap::new(),
         };
 

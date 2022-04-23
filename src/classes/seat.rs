@@ -28,16 +28,16 @@ impl Seat {
         let my_class;
 
         match state {
-            SeatState::Ocupied  => my_state = "Ocupied".to_string(),
-            SeatState::Free     => my_state = "Free".to_string(),
-            SeatState::Disabled => my_state = "Disabled".to_string(),
+            SeatState::Ocupied  => my_state = String::from("Ocupied"),
+            SeatState::Free     => my_state = String::from("Free"),
+            SeatState::Disabled => my_state = String::from("Disabled"),
         }
 
         match class {
-            SeatClass::First     => my_class = "First Class".to_string(),
-            SeatClass::Executive => my_class = "Executive Class".to_string(),
-            SeatClass::Economic  => my_class = "Economic Class".to_string(),
-            SeatClass::Premium   => my_class = "Premium Class".to_string(),
+            SeatClass::First     => my_class = String::from("First Class"),
+            SeatClass::Executive => my_class = String::from("Executive Class"),
+            SeatClass::Economic  => my_class = String::from("Economic Class"),
+            SeatClass::Premium   => my_class = String::from("Premium Class"),
         }
 
         Seat {
