@@ -20,6 +20,8 @@ fn main() {
     println!("---------");
     for i in 1..=20 {
         let seat_class_enum: SeatClass    = rand::random();
+        let a = seat_class_enum.to_string();
+        println!("aaaaa: {:?}", a);
         let airlane_name: AirlanesNames   = rand::random();
         let (outgoing_city, arrival_city) = travel_generator();
         println!("-----TICKET {:?}-----", i);
