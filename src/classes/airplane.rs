@@ -36,15 +36,4 @@ impl Airplane {
     pub fn number_of_rows(&self) -> u32 {
         return self.nro_rows;
     }
-
-    #[allow(dead_code)]
-    pub fn add_row_of_seats(&mut self, rows_starts: u32, rows_ends: u32, cols: u32, seat_state: SeatState, seat_class: SeatClass) {
-        for i in rows_starts..= rows_ends {
-            for j in 1..= cols {
-                let seat_number = format!("{}-{}", i, j);
-                let seat = Seat::new(seat_number, seat_state, seat_class);
-                self.add_seat(seat);
-            }
-        }
-    }
 }

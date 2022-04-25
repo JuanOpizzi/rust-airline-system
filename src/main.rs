@@ -17,11 +17,10 @@ fn main() {
     }
     println!("---------");
     for i in 1..=20 {
-        let seat_class_enum: SeatClass = rand::random();
-        let airlane_name: AirlanesNames = rand::random();
-        let city: Cities = rand::random();
+        let seat_class_enum: SeatClass    = rand::random();
+        let airlane_name: AirlanesNames   = rand::random();
         let (outgoing_city, arrival_city) = travel_generator();
-        println!("-----TICKET-----");
+        println!("-----TICKET {:?}-----", i);
         println!("seat: {:?}", seat_class_enum);
         println!("Airplane: {:?}", airlane_name);
         println!("Outgoing city: {:?}", outgoing_city);
