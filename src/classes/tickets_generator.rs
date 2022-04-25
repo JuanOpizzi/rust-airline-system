@@ -70,4 +70,13 @@ impl Distribution<Cities> for Standard {
     }
 }
 
+//todo add test for the ticket generator
 
+pub fn travel_generator() -> (Cities, Cities) {
+    let outgoing_city: Cities = rand::random();
+    let mut arrival_city: Cities = rand::random();
+    while outgoing_city == arrival_city {
+        arrival_city = rand::random();
+    }
+    (outgoing_city, arrival_city)
+}
