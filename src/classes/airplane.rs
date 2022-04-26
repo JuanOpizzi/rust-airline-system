@@ -2,8 +2,6 @@ use std::collections::HashMap;
 
 
 use crate::classes::seat::Seat;
-use crate::classes::seat::SeatClass;
-use crate::classes::seat::SeatState;
 
 pub struct Airplane {
     pub name: String,

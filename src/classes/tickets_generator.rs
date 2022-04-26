@@ -1,4 +1,7 @@
 use crate::classes::seat::SeatClass;
+//use std::io::prelude::*;
+
+use std::fmt;
 
 use rand::{
     distributions::{Distribution, Standard},
@@ -15,6 +18,13 @@ pub enum AirlanesNames {
     AmaszonasUruguay,
 }
 
+impl fmt::Display for AirlanesNames {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
+
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Cities {
     BuenosAires,
@@ -26,6 +36,12 @@ pub enum Cities {
     WashingtonDC,
     Barcelona,
     Roma,
+}
+
+impl fmt::Display for Cities {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
 }
 
 //todo move this file outside classes's folder
@@ -79,4 +95,32 @@ pub fn travel_generator() -> (Cities, Cities) {
         arrival_city = rand::random();
     }
     (outgoing_city, arrival_city)
+}
+
+//todo change name to ticket_generator(), and make it a "class"
+pub fn ticket() -> String {
+    let seat_class_enum: SeatClass       = rand::random();
+    let airlane_name_enum: AirlanesNames = rand::random();
+    let (outgoing_city_enum, arrival_city_enum) = travel_generator();
+    let seat_class    = seat_class_enum.to_string();
+    let airlane_name  = airlane_name_enum.to_string();
+    let outgoing_city = outgoing_city_enum.to_string();
+    let arrival_city  = arrival_city_enum.to_string();
+    let user_num: u32 = rand::random(); //todo, make for a number with 8 digits
+    let user_id       = user_num.to_string();
+    let seats_number  = rand::thread_rng().gen_range(1..=4).to_string();
+    let ticket = format!("{},{},{},{},{},{}", airlane_name, outgoing_city, arrival_city, seat_class, seats_number, user_id);
+
+    ticket
+}
+
+#[cfg(test)]
+pub mod tests {
+    use crate::classes::tickets_generator::{travel_generator};
+
+    #[test]
+    pub fn test_generate_different_cities() {
+        let (outgoing_city, arrival_city) = travel_generator();
+        assert_ne!(outgoing_city, arrival_city);
+    }
 }
