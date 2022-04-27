@@ -1,4 +1,5 @@
 use std::fs::File;
+use std::io;
 use std::io::{prelude::*};
 
 mod classes;
@@ -19,17 +20,19 @@ fn main() {
 
 }
 
-fn file_writer() -> std::io::Result<()> {
+//* return a vector of the results of each file, if it was successful or was en error
+fn file_writer() -> Vec<std::io::Result<()>> {
     let file_range = 0..FILES_TO_WRITE;
     file_range.into_iter().map(|i| {
         format!("data/tickets_{}.txt", i)
     })
     .flat_map(File::create)
-    .for_each(|mut file|{
+    .map(|mut file: File| -> io::Result<()> {
         for _ in 1..=LINES_TO_WRITE {
             let ticket = ticket();
-            writeln!(file, "{}", ticket);
+            writeln!(file, "{}", ticket)?;
         }
-    });
-    Ok(())
+        Ok(())
+    })
+    .collect::<Vec<_>>() //todo use reduce ?
 }
