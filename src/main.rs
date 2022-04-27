@@ -20,14 +20,16 @@ fn main() {
 }
 
 fn file_writer() -> std::io::Result<()> {
-    //? Do I need to close the file?
-    for i in 1..=FILES_TO_WRITE {
-        let file_name = format!("data/tickets_{}.txt", i);
-        let mut file = File::create(file_name).unwrap(); //todo change unwrap for match
+    let file_range = 0..FILES_TO_WRITE;
+    file_range.into_iter().map(|i| {
+        format!("data/tickets_{}.txt", i)
+    })
+    .flat_map(File::create)
+    .for_each(|mut file|{
         for _ in 1..=LINES_TO_WRITE {
             let ticket = ticket();
-            writeln!(file, "{}", ticket).unwrap();
+            writeln!(file, "{}", ticket);
         }
-    }
+    });
     Ok(())
 }
