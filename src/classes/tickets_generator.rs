@@ -1,5 +1,4 @@
 use crate::classes::seat::SeatClass;
-//use std::io::prelude::*;
 
 use std::fmt;
 

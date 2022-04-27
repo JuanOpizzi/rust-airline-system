@@ -1,6 +1,5 @@
 use std::collections::HashMap;
 
-
 use crate::classes::seat::Seat;
 
 pub struct Airplane {
