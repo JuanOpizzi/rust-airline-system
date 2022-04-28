@@ -16,8 +16,8 @@ fn main() {
         //todo init Airlines
         println!("{}", line.unwrap());
     }*/
-    let _ = file_writer();
-
+    let files_results = file_writer();
+    file_writer_results(files_results);
 }
 
 //* return a vector of the results of each file, if it was successful or was en error
@@ -35,4 +35,16 @@ fn file_writer() -> Vec<std::io::Result<()>> {
         Ok(())
     })
     .collect::<Vec<_>>() //todo use reduce ?
+}
+
+fn file_writer_results(files_results: Vec<std::io::Result<()>>) {
+    //todo if debug doesn't exists, it sends panic, solve this & for data/
+    let mut file_result = File::create("debug/files_results.txt").unwrap();
+    files_results.into_iter()
+    .enumerate()
+    .map(|(i, result)| {
+        format!("file {:?} result: {:?}", i,result)
+    }).for_each(|string_result| {
+        writeln!(file_result, "{}", string_result).unwrap()
+    });
 }
